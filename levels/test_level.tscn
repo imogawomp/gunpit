@@ -24,5 +24,6 @@ position = Vector2(596, 183)
 position = Vector2(694, 287)
 
 [node name="UnitRiot4" parent="unit_handler" instance=ExtResource("3_i1voc")]
+position = Vector2(0, 0)
 
 [node name="camera" parent="." instance=ExtResource("3_7o0oe")]

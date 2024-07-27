@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://clc5hug2k5pql"]
+[gd_scene load_steps=5 format=3 uid="uid://clc5hug2k5pql"]
 
 [ext_resource type="Script" path="res://units/unit_type_friendly/riot/unit_riot.gd" id="1_41r3f"]
 [ext_resource type="Texture2D" uid="uid://bmo54xvd7vbhs" path="res://Art/prototypes/iconPickUp.png" id="2_8nlis"]
 [ext_resource type="PackedScene" uid="uid://cbtrbl0vwm86h" path="res://units/unit_type_friendly/riot/unit_riot_turret/unit_riot_turret.tscn" id="3_sqhgs"]
-[ext_resource type="Script" path="res://units/unit_type_friendly/riot/unit_riot_turret/unit_riot_turret.gd" id="4_p3ple"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_isiup"]
 size = Vector2(60, 61)
@@ -25,6 +24,5 @@ shape = SubResource("RectangleShape2D_isiup")
 texture = ExtResource("2_8nlis")
 
 [node name="UnitRiotTurret" parent="." instance=ExtResource("3_sqhgs")]
-script = ExtResource("4_p3ple")
 
 [connection signal="velocity_computed" from="nav_agent" to="." method="_on_nav_agent_velocity_computed"]
