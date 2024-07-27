@@ -11,22 +11,34 @@ var select_end : Vector2
 var move_start : Vector2
 var move_end : Vector2
 
+var select_drag_test : bool = false
+var move_drag_test : bool = false
+
 func _ready():
 	select_area.monitorable = false
 	select_area.monitoring = false
 
 func _process(_delta):
 	selection_inputs()
+	move_command_inputs()
+	
 
 func selection_inputs () -> void:
 	if Input.is_action_just_pressed("lmb"):
 		select_start = get_global_mouse_position()
+		select_drag_test = true
 		print(select_start)
 
+	if select_drag_test:
+		select_end = get_global_mouse_position()
+		queue_redraw()
+
 	if Input.is_action_just_released("lmb"):
+		select_drag_test = false
 		select_end = get_global_mouse_position()
 		print(select_end)
 		adjust_area_get_units()
+		queue_redraw()
 
 func adjust_area_get_units () -> void:
 	var shape_rect := RectangleShape2D.new()
@@ -58,42 +70,64 @@ func adjust_area_get_units () -> void:
 	print(selected_units)
 	select_area.monitoring = false
 
-	
-	queue_redraw()
-
 func _draw():
-	var n_rect : Rect2 = Rect2()
-	n_rect.size = select_shape.shape.size
-	n_rect.position = select_area.position - (select_shape.shape.size / 2)
+	if select_drag_test:
+		var n_rect : Rect2 = Rect2()
+		n_rect.size = (abs(select_start - select_end))
+		n_rect.position = ((select_start + select_end) / 2) - (n_rect.size / 2)
 
-	draw_rect(n_rect, Color.RED)
+		draw_rect(n_rect, Color(1,0,0,0.25))
+	if move_drag_test:
+		draw_line(move_start, move_end, Color(0,1,0,0.25), 3)
 
 func move_command_inputs () -> void:
 	if Input.is_action_just_pressed("rmb"):
 		move_start = get_global_mouse_position()
+		
+		move_drag_test = true
+
 		print(move_start)
 
+	if move_drag_test:
+		move_end = get_global_mouse_position()
+		queue_redraw()
+
 	if Input.is_action_just_released("rmb"):
+		move_drag_test = false
 		move_end = get_global_mouse_position()
 		print(move_end)
-		adjust_area_get_units()
+		pass_move_points()
+		queue_redraw()
 
 func pass_move_points () -> void:
 	if selected_units:
-		if move_end.distance_to(move_start) || (selected_units.size() < 2):
+		if (move_end.distance_to(move_start) < 10) || (selected_units.size() < 2):
 			var mid_point : Vector2 = Vector2((move_end.x + move_start.x) / 2, (move_end.y + move_start.y) / 2)
 
 			for unit in selected_units:
-				pass
-				# unit.TARGET_POSITION = mid_point
+				unit.TARGET_POSITION = mid_point
+				print("move mid")
 		else:
 			var slope_vector : Vector2 = Vector2(move_end.x - move_start.x, move_end.y - move_start.y)
 
-			var slope_mult : float = 1 / selected_units.size()
-
+			var slope_mult : float = 1 / float(selected_units.size() - 1)
+			
+			var unused_units : Array = []
+			unused_units.append_array(selected_units)
 			for idx in selected_units.size():
-				pass
-				var unit : Node3D = selected_units[idx]
+				
+				var unit_idx = 0
 
-				# unit.TARGET_POSITION = move_start + ((idx * slope_mult) * slope_vector)
+				var targ_pos : Vector2 = move_start + ((idx * slope_mult) * slope_vector)
+
+				for uidx in unused_units.size():
+					if uidx == unit_idx:
+						continue
+					if unused_units[unit_idx].position.distance_to(targ_pos) > unused_units[uidx].position.distance_to(targ_pos):
+						unit_idx = uidx
+				var unit = unused_units[unit_idx]
+				unused_units.remove_at(unit_idx)
+
+				unit.TARGET_POSITION = targ_pos
+				print("move pt")
 
