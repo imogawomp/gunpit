@@ -2,14 +2,16 @@
 
 [ext_resource type="Texture2D" uid="uid://bey3ihe31nq8l" path="res://Art/prototypes/iconComponentClear.png" id="1_jcod5"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8wqin"]
-size = Vector2(30, 30.5)
+[sub_resource type="CircleShape2D" id="CircleShape2D_i0rg1"]
+radius = 166.589
 
-[node name="UnitRiot" type="CharacterBody2D"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_8wqin")
+[node name="UnitRiotTurret" type="Area2D"]
+collision_layer = 2
+collision_mask = 2
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_jcod5")
+
+[node name="DetectionCollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_i0rg1")

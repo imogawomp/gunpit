@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://clc5hug2k5pql"]
+[gd_scene load_steps=6 format=3 uid="uid://clc5hug2k5pql"]
 
 [ext_resource type="Script" path="res://units/unit_type_friendly/riot/unit_riot.gd" id="1_41r3f"]
 [ext_resource type="Texture2D" uid="uid://bmo54xvd7vbhs" path="res://Art/prototypes/iconPickUp.png" id="2_8nlis"]
@@ -7,9 +7,6 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_isiup"]
 size = Vector2(60, 61)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_gb0cy"]
-radius = 166.589
 
 [node name="UnitRiot" type="CharacterBody2D" groups=["friendly", "riot"]]
 script = ExtResource("1_41r3f")
@@ -28,13 +25,6 @@ shape = SubResource("RectangleShape2D_isiup")
 texture = ExtResource("2_8nlis")
 
 [node name="UnitRiotTurret" parent="." instance=ExtResource("3_sqhgs")]
-collision_layer = 2
-collision_mask = 2
 script = ExtResource("4_p3ple")
-
-[node name="Area2D" type="Area2D" parent="."]
-
-[node name="DetectionCollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("CircleShape2D_gb0cy")
 
 [connection signal="velocity_computed" from="nav_agent" to="." method="_on_nav_agent_velocity_computed"]

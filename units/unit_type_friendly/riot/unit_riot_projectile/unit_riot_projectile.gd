@@ -1,5 +1,5 @@
-extends CharacterBody2D
-class_name base_turret
+extends base_projectile
+class_name friendly_unit_riot_projectile
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

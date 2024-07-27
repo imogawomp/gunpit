@@ -9,3 +9,7 @@ func _process(delta):
 
 func _fire_projectile():
 	pass
+
+func on_area_entered(body):
+	print(body)
+
