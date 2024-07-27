@@ -1,5 +1,5 @@
-extends base_turret
-class_name unit_riot_turret
+extends base_unit
+class_name enemy_unit_riot
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

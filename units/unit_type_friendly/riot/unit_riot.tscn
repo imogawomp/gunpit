@@ -1,0 +1,32 @@
+[gd_scene load_steps=7 format=3 uid="uid://clc5hug2k5pql"]
+
+[ext_resource type="Texture2D" uid="uid://blvoj2g0xum1u" path="res://Art/prototypes/iconEnemy.png" id="1_27amr"]
+[ext_resource type="Script" path="res://units/unit_type_friendly/riot/unit_riot.gd" id="1_41r3f"]
+[ext_resource type="PackedScene" uid="uid://cbtrbl0vwm86h" path="res://units/unit_type_friendly/riot/unit_riot_turret/unit_riot_turret.tscn" id="3_sqhgs"]
+[ext_resource type="Script" path="res://units/unit_type_friendly/riot/unit_riot_turret/unit_riot_turret.gd" id="4_p3ple"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_isiup"]
+size = Vector2(60, 61)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_gb0cy"]
+radius = 166.589
+
+[node name="UnitRiot" type="CharacterBody2D" groups=["friendly_unit_riot"]]
+script = ExtResource("1_41r3f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_isiup")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_27amr")
+
+[node name="UnitRiotTurret" parent="." instance=ExtResource("3_sqhgs")]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("4_p3ple")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="DetectionCollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_gb0cy")
