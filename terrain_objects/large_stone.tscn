@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://d21lfhhp8tap4"]
+
+[ext_resource type="Texture2D" uid="uid://b20sq12x8v8dl" path="res://Art/terrain/large_stone.png" id="1_n2co5"]
+
+[node name="large_stone" type="StaticBody2D"]
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(-11, 35, -44, 20, -87.5, 26, -90.5, -4, -66, -31, -4.25, -23.5, 39, -35.5, 90, -15.75, 76.5, 14, 59, 19.5, 20.5, 20)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1.52588e-05, -3.8147e-06)
+scale = Vector2(0.22625, 0.116667)
+texture = ExtResource("1_n2co5")
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
+radius = 95.24
+vertices = PackedVector2Array(20.5, 20, -11, 35, -44, 20, -87.5, 26, -90.5, -4, -66, -31, -4.25, -23.5, 39, -35.5, 90, -15.75, 76.5, 14, 59, 19.5)

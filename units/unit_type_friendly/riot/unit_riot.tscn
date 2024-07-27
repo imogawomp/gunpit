@@ -11,8 +11,14 @@ size = Vector2(60, 61)
 [sub_resource type="CircleShape2D" id="CircleShape2D_gb0cy"]
 radius = 166.589
 
-[node name="UnitRiot" type="CharacterBody2D" groups=["friendly_unit_riot"]]
+[node name="UnitRiot" type="CharacterBody2D" groups=["friendly", "riot"]]
 script = ExtResource("1_41r3f")
+
+[node name="nav_agent" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true
+radius = 65.55
+time_horizon_obstacles = 0.79
+max_speed = 100000.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 0.5)
@@ -30,3 +36,5 @@ script = ExtResource("4_p3ple")
 
 [node name="DetectionCollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_gb0cy")
+
+[connection signal="velocity_computed" from="nav_agent" to="." method="_on_nav_agent_velocity_computed"]

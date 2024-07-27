@@ -81,10 +81,13 @@ func adjust_area_get_units () -> void:
 	
 	if get_child_count() > 1:
 		for chld in range(1, get_child_count()):
+			var child = get_child(chld)
+			if !child.is_in_group("friendly"):
+				continue
 			var pos : Vector2 = get_child(chld).position
 			if (pos.x > (a_pos.x - (size.x/2))) && (pos.x < (a_pos.x + (size.x/2))):
 				if (pos.y > (a_pos.y - (size.y/2))) && (pos.y < (a_pos.y + (size.y/2))):
-					units_in_area.append(get_child(chld))
+					units_in_area.append(child)
 
 	if Input.is_action_pressed("ctrl"):
 		for unit in units_in_area:

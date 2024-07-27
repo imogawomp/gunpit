@@ -11,9 +11,13 @@ size = Vector2(60, 61)
 [sub_resource type="CircleShape2D" id="CircleShape2D_gb0cy"]
 radius = 166.589
 
-[node name="UnitRiot" type="CharacterBody2D" groups=["enemy_unit_riot"]]
+[node name="UnitRiot" type="CharacterBody2D" groups=["enemy", "riot"]]
 position = Vector2(247, 197)
 script = ExtResource("1_apros")
+
+[node name="nav_agent" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true
+radius = 50.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 0.5)
