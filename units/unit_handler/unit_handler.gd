@@ -54,7 +54,6 @@ func selection_inputs () -> void:
 	if Input.is_action_just_pressed("lmb"):
 		select_start = get_global_mouse_position()
 		select_drag_test = true
-		print(select_start)
 
 	if select_drag_test:
 		select_end = get_global_mouse_position()
@@ -63,7 +62,6 @@ func selection_inputs () -> void:
 	if Input.is_action_just_released("lmb"):
 		select_drag_test = false
 		select_end = get_global_mouse_position()
-		print(select_end)
 		adjust_area_get_units()
 		queue_redraw()
 
@@ -97,7 +95,6 @@ func adjust_area_get_units () -> void:
 		selected_units.resize(0)
 		selected_units.append_array(units_in_area)
 	
-	print(selected_units)
 	select_area.monitoring = false
 
 func _draw():
@@ -116,8 +113,6 @@ func move_command_inputs () -> void:
 		
 		move_drag_test = true
 
-		print(move_start)
-
 	if move_drag_test:
 		move_end = get_global_mouse_position()
 		queue_redraw()
@@ -125,7 +120,7 @@ func move_command_inputs () -> void:
 	if Input.is_action_just_released("rmb"):
 		move_drag_test = false
 		move_end = get_global_mouse_position()
-		print(move_end)
+
 		pass_move_points()
 		queue_redraw()
 
@@ -136,7 +131,6 @@ func pass_move_points () -> void:
 
 			for unit in selected_units:
 				unit.TARGET_POSITION = mid_point
-				print("move mid")
 		else:
 			var slope_vector : Vector2 = Vector2(move_end.x - move_start.x, move_end.y - move_start.y)
 
@@ -159,5 +153,4 @@ func pass_move_points () -> void:
 				unused_units.remove_at(unit_idx)
 
 				unit.TARGET_POSITION = targ_pos
-				print("move pt")
 

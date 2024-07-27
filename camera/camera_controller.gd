@@ -10,17 +10,31 @@ var n_zoom: float = 1.0
 func _ready():
 	pass # Replace with function body.
 
+var ini_pos : Vector2
+var mouse_ini_pos : Vector2
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	var direction : Vector2 = Input.get_vector("cam_lft", "cam_rght", "cam_up", "cam_dwn")
-
-	if direction:
-		position += direction * cam_move_speed
-
 	n_zoom = clampf(n_zoom, 0.5, 1.5)
 
 	zoom = Vector2(n_zoom,n_zoom)
+
+	if Input.is_action_just_pressed("mmb"):
+		ini_pos = global_position
+		mouse_ini_pos = get_global_mouse_position()
+	if Input.is_action_pressed("mmb"):
+		var off : Vector2 = get_global_mouse_position() - mouse_ini_pos
+		mouse_ini_pos = get_global_mouse_position()
+		global_position = ini_pos + off
+		ini_pos = global_position
+	else:
+		var direction : Vector2 = Input.get_vector("cam_lft", "cam_rght", "cam_up", "cam_dwn")
+
+		if direction:
+			position += direction * cam_move_speed
+
+
+
 
 func _input(event):
 	if event is InputEventMouseButton:
@@ -28,4 +42,5 @@ func _input(event):
 			n_zoom += cam_zoom_speed
 		elif event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
 			n_zoom -= cam_zoom_speed
-
+	
+			
