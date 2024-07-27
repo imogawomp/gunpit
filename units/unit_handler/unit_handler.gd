@@ -5,8 +5,11 @@ var selected_units : Array = []
 var select_start : Vector2
 var select_end : Vector2
 
+const friendly_unit_riot = preload("res://units/unit_type_friendly/riot/unit_riot.tscn")
+
 @onready var select_area : Area2D = $select_area
 @onready var select_shape : CollisionShape2D = $select_area/select_shape
+
 
 var move_start : Vector2
 var move_end : Vector2
@@ -17,11 +20,35 @@ var move_drag_test : bool = false
 func _ready():
 	select_area.monitorable = false
 	select_area.monitoring = false
+	_place_units()
 
 func _process(_delta):
 	selection_inputs()
 	move_command_inputs()
+
+func _place_units():
 	
+	var friendly_posx_array: Array;
+	var friendly_posy_array: Array;
+	
+	for i in range(0, 3):
+		var tempx = global_position.x + randf_range(0, 500)
+		var tempy = global_position.y + randf_range(0, 500)
+		
+		if friendly_posx_array && friendly_posy_array:
+			for x in friendly_posx_array.size():
+				while (tempx >= friendly_posx_array[x] + 100 && tempx < friendly_posx_array[x] + 100):
+					tempx = global_position.x + randf_range(0, 250);
+				while (tempy >= friendly_posy_array[x] + 100 && tempy < friendly_posy_array[x] + 100):
+					tempy = global_position.y + randf_range(0, 250);
+				
+		var f_unit_riot = friendly_unit_riot.instantiate()
+		f_unit_riot.global_position = Vector2(tempx, tempy)
+		
+		friendly_posx_array.push_back(tempx)
+		friendly_posy_array.push_back(tempy)
+		
+		self.add_child(f_unit_riot)
 
 func selection_inputs () -> void:
 	if Input.is_action_just_pressed("lmb"):

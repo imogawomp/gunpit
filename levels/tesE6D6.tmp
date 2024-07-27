@@ -2,8 +2,6 @@
 
 [ext_resource type="PackedScene" uid="uid://clc5hug2k5pql" path="res://units/unit_type_friendly/riot/unit_riot.tscn" id="2_k8kll"]
 [ext_resource type="PackedScene" uid="uid://buaau86qm8hfr" path="res://units/unit_handler/unit_handler.tscn" id="2_t3iyp"]
-[ext_resource type="PackedScene" uid="uid://dw3sieenmbc06" path="res://camera/camera.tscn" id="3_7o0oe"]
-[ext_resource type="PackedScene" uid="uid://buaau86qm8hfr" path="res://units/unit_handler/unit_handler.tscn" id="2_t3iyp"]
 [ext_resource type="PackedScene" uid="uid://j480nofftlkv" path="res://units/unit_type_enemy/riot/unit_riot.tscn" id="3_i1voc"]
 
 [node name="test_level" type="Node2D"]
@@ -19,5 +17,4 @@ position = Vector2(596, 183)
 [node name="UnitRiot3" parent="unit_handler" instance=ExtResource("2_k8kll")]
 position = Vector2(694, 287)
 
-[node name="camera" parent="." instance=ExtResource("3_7o0oe")]
 [node name="UnitRiot4" parent="unit_handler" instance=ExtResource("3_i1voc")]
