@@ -5,7 +5,7 @@ const friendly_unit_riot = preload("res://units/unit_type_friendly/riot/unit_rio
 
 @onready var TURRET_POSITION = self.position
 @onready var TARGET_BODIES: Array = []
-
+@onready var FIRE = false
 
 func _process(delta):
 	look_at(TURRET_POSITION)
@@ -14,8 +14,20 @@ func _process(delta):
 func _fire_projectile():
 	queue_redraw()
 	for body in TARGET_BODIES:
-		#var unit_projectile = friendly_unit_riot.instantiate()
-		pass
+		if FIRE:
+			return
+		else:
+			FIRE = true
+			await get_tree().create_timer(0.1).timeout
+			
+			var unit_projectile = friendly_unit_riot.instantiate()
+			unit_projectile.global_position = self.global_position
+			unit_projectile.CURRENT_ENEMY = body
+			unit_projectile.RAND_VECTOR = Vector2(randf_range(-40, 40), randf_range(-40, 40))
+			
+			get_tree().get_root().add_child(unit_projectile)
+		
+		FIRE = false
 
 func _on_body_shape_entered(rid_body: RID, body: Node2D, idx: int, loc_idx: int):
 	if !TARGET_BODIES.has(body) && body.is_in_group("enemy"):
