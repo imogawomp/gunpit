@@ -11,7 +11,3 @@ polygon = PackedVector2Array(-11, 35, -44, 20, -87.5, 26, -90.5, -4, -66, -31, -
 position = Vector2(1.52588e-05, -3.8147e-06)
 scale = Vector2(0.22625, 0.116667)
 texture = ExtResource("1_n2co5")
-
-[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
-radius = 95.24
-vertices = PackedVector2Array(20.5, 20, -11, 35, -44, 20, -87.5, 26, -90.5, -4, -66, -31, -4.25, -23.5, 39, -35.5, 90, -15.75, 76.5, 14, 59, 19.5)

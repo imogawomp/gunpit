@@ -21,20 +21,18 @@ func _process(delta):
 
 	if Input.is_action_just_pressed("mmb"):
 		ini_pos = global_position
-		mouse_ini_pos = get_global_mouse_position()
+		mouse_ini_pos = get_local_mouse_position()
 	if Input.is_action_pressed("mmb"):
-		var off : Vector2 = get_global_mouse_position() - mouse_ini_pos
-		mouse_ini_pos = get_global_mouse_position()
-		global_position = ini_pos + off
-		ini_pos = global_position
+		var off : Vector2 = get_local_mouse_position() - mouse_ini_pos
+		if off.length() > 10:
+			mouse_ini_pos = get_local_mouse_position()
+			global_position = ini_pos - off
+			ini_pos = global_position
 	else:
 		var direction : Vector2 = Input.get_vector("cam_lft", "cam_rght", "cam_up", "cam_dwn")
 
 		if direction:
 			position += direction * cam_move_speed
-
-
-
 
 func _input(event):
 	if event is InputEventMouseButton:
