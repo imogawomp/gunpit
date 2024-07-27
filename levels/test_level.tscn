@@ -1,14 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://cib7c3gled5k8"]
+[gd_scene load_steps=2 format=3 uid="uid://cib7c3gled5k8"]
 
-[ext_resource type="PackedScene" uid="uid://d1mtanb30ylc4" path="res://units/unit/unit.tscn" id="1_6lxmh"]
 [ext_resource type="PackedScene" uid="uid://buaau86qm8hfr" path="res://units/unit_handler/unit_handler.tscn" id="2_t3iyp"]
 
 [node name="test_level" type="Node2D"]
 
 [node name="unit_handler" parent="." instance=ExtResource("2_t3iyp")]
-
-[node name="unit2" parent="unit_handler" instance=ExtResource("1_6lxmh")]
-position = Vector2(691, 335)
-
-[node name="unit" parent="unit_handler" instance=ExtResource("1_6lxmh")]
-position = Vector2(520, 258)
