@@ -14,7 +14,7 @@ script = ExtResource("1_apros")
 
 [node name="nav_agent" type="NavigationAgent2D" parent="."]
 avoidance_enabled = true
-radius = 50.0
+radius = 35.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 0.5)

@@ -90,11 +90,16 @@ func adjust_area_get_units () -> void:
 	if Input.is_action_pressed("ctrl"):
 		for unit in units_in_area:
 			if !selected_units.has(unit):
-				selected_units.append_array(units_in_area)
+				selected_units.append(unit)
 	else:
+		for unit in selected_units:
+			unit.selected = false
 		selected_units.resize(0)
 		selected_units.append_array(units_in_area)
 	
+	for unit in selected_units:
+		unit.selected = true
+
 	select_area.monitoring = false
 
 func _draw():
@@ -106,6 +111,9 @@ func _draw():
 		draw_rect(n_rect, Color(1,0,0,0.25))
 	if move_drag_test:
 		draw_line(move_start, move_end, Color(0,1,0,0.25), 3)
+	
+	for body in selected_units:
+		draw_circle(body.TARGET_POSITION, 25, Color(0,1,0,0.25))
 
 func move_command_inputs () -> void:
 	if Input.is_action_just_pressed("rmb"):

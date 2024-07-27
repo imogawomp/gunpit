@@ -12,7 +12,7 @@ script = ExtResource("1_41r3f")
 
 [node name="nav_agent" type="NavigationAgent2D" parent="."]
 avoidance_enabled = true
-radius = 65.55
+radius = 35.0
 time_horizon_obstacles = 0.79
 max_speed = 100000.0
 

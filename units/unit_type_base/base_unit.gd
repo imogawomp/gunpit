@@ -1,6 +1,8 @@
 extends CharacterBody2D
 class_name base_unit
 
+var selected : bool = false
+
 const SPEED = 300.0
 @onready var TARGET_POSITION: Vector2 = global_position
 
@@ -23,7 +25,9 @@ func actor_setup():
 func set_movement_target() -> void:
 	nav_agent.target_position = TARGET_POSITION
 
-func _physics_process(delta):
+func _physics_process(_delta):
+	queue_redraw()
+
 	actor_setup()
 	if nav_agent.is_navigation_finished():
 		return
@@ -50,3 +54,7 @@ func _unit_move_toward_point(target_position):
 func _on_velocity_computed(safe_velocity : Vector2):
 	velocity = safe_velocity
 	move_and_slide()
+
+func _draw():
+	if selected:
+		draw_circle(Vector2.ZERO, 45, Color(0,1,1,0.25))
