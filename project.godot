@@ -11,9 +11,8 @@ config_version=5
 [application]
 
 config/name="TD_RTS"
-run/main_scene="res://units/unit/unit.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://Art/icon.svg"
 
 [input]
 
