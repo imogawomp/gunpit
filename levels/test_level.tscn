@@ -5,10 +5,10 @@
 
 [node name="test_level" type="Node2D"]
 
-[node name="unit" parent="." instance=ExtResource("1_6lxmh")]
-position = Vector2(340, 258)
-
-[node name="unit2" parent="." instance=ExtResource("1_6lxmh")]
-position = Vector2(814, 453)
-
 [node name="unit_handler" parent="." instance=ExtResource("2_t3iyp")]
+
+[node name="unit2" parent="unit_handler" instance=ExtResource("1_6lxmh")]
+position = Vector2(691, 335)
+
+[node name="unit" parent="unit_handler" instance=ExtResource("1_6lxmh")]
+position = Vector2(520, 258)
