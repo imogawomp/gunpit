@@ -1,15 +1,16 @@
 [gd_scene load_steps=5 format=3 uid="uid://clc5hug2k5pql"]
 
-[ext_resource type="Script" path="res://units/unit_type_friendly/riot/unit_riot.gd" id="1_41r3f"]
-[ext_resource type="Texture2D" uid="uid://bmo54xvd7vbhs" path="res://Art/prototypes/iconPickUp.png" id="2_8nlis"]
-[ext_resource type="PackedScene" uid="uid://cbtrbl0vwm86h" path="res://units/unit_type_friendly/riot/unit_riot_turret/unit_riot_turret.tscn" id="3_sqhgs"]
+[ext_resource type="Script" path="res://units/unit_type_friendly/friendly_riot/friendly_riot.gd" id="1_xptnd"]
+[ext_resource type="Texture2D" uid="uid://bmo54xvd7vbhs" path="res://Art/prototypes/iconPickUp.png" id="2_fi4op"]
+[ext_resource type="PackedScene" uid="uid://cbtrbl0vwm86h" path="res://units/unit_type_friendly/friendly_riot/friendly_riot_turret/friendly_riot_turret.tscn" id="3_hsmwc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_isiup"]
 size = Vector2(60, 61)
 
 [node name="UnitRiot" type="CharacterBody2D" groups=["friendly", "riot"]]
-collision_layer = 9
-script = ExtResource("1_41r3f")
+collision_layer = 25
+collision_mask = 17
+script = ExtResource("1_xptnd")
 
 [node name="nav_agent" type="NavigationAgent2D" parent="."]
 avoidance_enabled = true
@@ -22,8 +23,8 @@ position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_isiup")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_8nlis")
+texture = ExtResource("2_fi4op")
 
-[node name="UnitRiotTurret" parent="." instance=ExtResource("3_sqhgs")]
+[node name="UnitRiotTurret" parent="." instance=ExtResource("3_hsmwc")]
 
 [connection signal="velocity_computed" from="nav_agent" to="." method="_on_nav_agent_velocity_computed"]

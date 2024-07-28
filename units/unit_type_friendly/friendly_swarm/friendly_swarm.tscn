@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://c7yyhaywx61ju"]
+
+[ext_resource type="Script" path="res://units/unit_type_friendly/friendly_swarm/friendly_swarm.gd" id="1_wnrav"]
+[ext_resource type="Texture2D" uid="uid://b17u3lny8ac4s" path="res://Art/prototypes/iconComponentAttack.png" id="2_o3ocy"]
+[ext_resource type="PackedScene" uid="uid://b06dxoe1c35w4" path="res://units/unit_type_friendly/friendly_swarm/friendly_swarm_turret/friendly_swarm_turret.tscn" id="3_luxo2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_isiup"]
+size = Vector2(45, 45)
+
+[node name="UnitSwarm" type="CharacterBody2D" groups=["friendly", "swarm"]]
+collision_layer = 25
+collision_mask = 17
+script = ExtResource("1_wnrav")
+
+[node name="nav_agent" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true
+radius = 35.0
+time_horizon_obstacles = 0.79
+max_speed = 100000.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_isiup")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("2_o3ocy")
+
+[node name="UnitRiotTurret" parent="." instance=ExtResource("3_luxo2")]
+
+[connection signal="velocity_computed" from="nav_agent" to="." method="_on_nav_agent_velocity_computed"]

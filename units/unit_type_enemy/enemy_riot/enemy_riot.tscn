@@ -1,16 +1,16 @@
-[gd_scene load_steps=6 format=3 uid="uid://j480nofftlkv"]
+[gd_scene load_steps=5 format=3 uid="uid://j480nofftlkv"]
 
-[ext_resource type="Script" path="res://units/unit_type_enemy/riot/unit_riot.gd" id="1_apros"]
+[ext_resource type="Script" path="res://units/unit_type_enemy/enemy_riot/enemy_riot.gd" id="1_apros"]
 [ext_resource type="Texture2D" uid="uid://blvoj2g0xum1u" path="res://Art/prototypes/iconEnemy.png" id="2_y136n"]
-[ext_resource type="PackedScene" uid="uid://cugd7nfrod5nv" path="res://units/unit_type_enemy/riot/unit_riot_turret/unit_riot_turret.tscn" id="3_x5ukc"]
-[ext_resource type="Script" path="res://units/unit_type_enemy/riot/unit_riot_turret/unit_riot_turret.gd" id="4_em6uc"]
+[ext_resource type="PackedScene" uid="uid://cugd7nfrod5nv" path="res://units/unit_type_enemy/enemy_riot/enemy_riot_turret/enemy_riot_turret.tscn" id="3_x5ukc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_isiup"]
 size = Vector2(60, 61)
 
 [node name="UnitRiot" type="CharacterBody2D" groups=["enemy", "riot"]]
 position = Vector2(247, 197)
-collision_layer = 5
+collision_layer = 21
+collision_mask = 17
 script = ExtResource("1_apros")
 
 [node name="nav_agent" type="NavigationAgent2D" parent="."]
@@ -24,8 +24,6 @@ shape = SubResource("RectangleShape2D_isiup")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_y136n")
 
-[node name="UnitRiotTurret" parent="." instance=ExtResource("3_x5ukc")]
-script = ExtResource("4_em6uc")
+[node name="UnitRiot" parent="." instance=ExtResource("3_x5ukc")]
 
 [connection signal="velocity_computed" from="nav_agent" to="." method="_on_nav_agent_velocity_computed"]
-[connection signal="body_shape_entered" from="UnitRiotTurret" to="UnitRiotTurret" method="_on_body_shape_entered"]

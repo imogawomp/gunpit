@@ -5,7 +5,7 @@ var selected_units : Array = []
 var select_start : Vector2
 var select_end : Vector2
 
-const friendly_unit_riot = preload("res://units/unit_type_friendly/riot/unit_riot.tscn")
+const friendly_unit_riot = preload("res://units/unit_type_friendly/friendly_riot/friendly_riot.tscn")
 
 @onready var select_area : Area2D = $select_area
 @onready var select_shape : CollisionShape2D = $select_area/select_shape
@@ -21,6 +21,7 @@ func _ready():
 	select_area.monitorable = false
 	select_area.monitoring = false
 	_place_units()
+	process_mode = Node.PROCESS_MODE_PAUSABLE
 
 func _process(_delta):
 	for body in selected_units:	
@@ -31,9 +32,8 @@ func _process(_delta):
 	move_command_inputs()
 
 func _place_units():
-	
-	var friendly_posx_array: Array;
-	var friendly_posy_array: Array;
+	var friendly_posx_array: Array = []
+	var friendly_posy_array: Array = []
 	
 	for i in range(0, 3):
 		var tempx = global_position.x + randf_range(0, 500)

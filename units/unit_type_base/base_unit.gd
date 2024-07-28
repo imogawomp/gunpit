@@ -4,9 +4,10 @@ class_name base_unit
 var selected : bool = false
 
 var health : float = 100
+var max_health : float = 100
 var dead : bool = false
 
-const SPEED = 300.0
+var SPEED = 300.0
 @onready var TARGET_POSITION: Vector2 = global_position
 
 @onready var nav_agent : NavigationAgent2D = $nav_agent
@@ -30,6 +31,7 @@ func set_movement_target() -> void:
 
 func _physics_process(_delta):
 	queue_redraw()
+	regen_health()
 
 	actor_setup()
 	if nav_agent.is_navigation_finished():
@@ -72,3 +74,18 @@ func take_damage(damage : float) -> void:
 
 		await get_tree().create_timer(0.2).timeout
 		queue_free()
+
+var regening : bool = false
+
+func regen_health() -> void:
+	if !regening:
+		regening = true
+		await get_tree().create_timer(0.5).timeout
+
+
+		if health < max_health:
+			health += 0.5
+			health = clampf(health, 0, max_health)
+			regening = false
+	else:
+		return
