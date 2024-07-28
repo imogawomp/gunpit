@@ -1,0 +1,23 @@
+[gd_scene load_steps=6 format=3 uid="uid://bfyrh2kqva7qi"]
+
+[ext_resource type="Script" path="res://units/unit_type_enemy/unit_riot_projectile_enemy/unit_riot_projectile.gd" id="1_40k6p"]
+[ext_resource type="Texture2D" uid="uid://im2wd26jg87o" path="res://Art/component_sprites/turretlazer5.png" id="2_64yon"]
+[ext_resource type="Shader" uid="uid://brng0n0k538ux" path="res://units/unit_type_enemy/unit_riot_projectile_enemy/unit_riot_projectile.tres" id="2_mdp7w"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_e1rbx"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hcr8a"]
+shader = ExtResource("2_mdp7w")
+
+[node name="UnitRiotProjectile" type="CharacterBody2D"]
+collision_layer = 8
+collision_mask = 8
+script = ExtResource("1_40k6p")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("SegmentShape2D_e1rbx")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_hcr8a")
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_64yon")

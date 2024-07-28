@@ -23,6 +23,10 @@ func _ready():
 	_place_units()
 
 func _process(_delta):
+	for body in selected_units:	
+		if body.dead:
+			selected_units.remove_at(selected_units.find(body))
+			continue
 	selection_inputs()
 	move_command_inputs()
 

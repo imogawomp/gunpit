@@ -1,0 +1,35 @@
+[gd_resource type="VisualShader" load_steps=3 format=3 uid="uid://brng0n0k538ux"]
+
+[sub_resource type="VisualShaderNodeInput" id="VisualShaderNodeInput_st5wc"]
+expanded_output_ports = [0]
+input_name = "color"
+
+[sub_resource type="VisualShaderNodeColorConstant" id="VisualShaderNodeColorConstant_wbw3d"]
+constant = Color(0.831373, 0.0823529, 0, 1)
+
+[resource]
+code = "shader_type canvas_item;
+render_mode blend_mix;
+
+
+
+
+void fragment() {
+// ColorConstant:4
+	vec4 n_out4p0 = vec4(0.831373, 0.082353, 0.000000, 1.000000);
+
+
+// Output:0
+	COLOR.rgb = vec3(n_out4p0.xyz);
+
+
+}
+"
+graph_offset = Vector2(-201, 98)
+mode = 1
+flags/light_only = false
+nodes/fragment/2/node = SubResource("VisualShaderNodeInput_st5wc")
+nodes/fragment/2/position = Vector2(-200, 180)
+nodes/fragment/4/node = SubResource("VisualShaderNodeColorConstant_wbw3d")
+nodes/fragment/4/position = Vector2(200, 180)
+nodes/fragment/connections = PackedInt32Array(4, 0, 0, 0)

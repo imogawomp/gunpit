@@ -3,11 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://bey3ihe31nq8l" path="res://Art/prototypes/iconComponentClear.png" id="1_mq6vs"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_om7o4"]
-radius = 89.0056
+radius = 401.0
 
 [node name="UnitRiot" type="Area2D"]
-collision_layer = 2
-collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_om7o4")

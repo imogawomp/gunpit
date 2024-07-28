@@ -27,4 +27,5 @@ texture = ExtResource("2_y136n")
 [node name="UnitRiotTurret" parent="." instance=ExtResource("3_x5ukc")]
 script = ExtResource("4_em6uc")
 
+[connection signal="velocity_computed" from="nav_agent" to="." method="_on_nav_agent_velocity_computed"]
 [connection signal="body_shape_entered" from="UnitRiotTurret" to="UnitRiotTurret" method="_on_body_shape_entered"]

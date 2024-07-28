@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://units/unit_type_friendly/riot/unit_riot_turret/unit_riot_turret.gd" id="1_jwpco"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_i0rg1"]
-radius = 423.302
+radius = 400.0
 
 [node name="UnitRiotTurret" type="Area2D"]
 script = ExtResource("1_jwpco")

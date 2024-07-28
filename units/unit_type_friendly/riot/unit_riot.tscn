@@ -8,6 +8,7 @@
 size = Vector2(60, 61)
 
 [node name="UnitRiot" type="CharacterBody2D" groups=["friendly", "riot"]]
+collision_layer = 9
 script = ExtResource("1_41r3f")
 
 [node name="nav_agent" type="NavigationAgent2D" parent="."]
