@@ -10,6 +10,7 @@ size = Vector2(60, 61)
 
 [node name="UnitRiot" type="CharacterBody2D" groups=["enemy", "riot"]]
 position = Vector2(247, 197)
+collision_layer = 5
 script = ExtResource("1_apros")
 
 [node name="nav_agent" type="NavigationAgent2D" parent="."]

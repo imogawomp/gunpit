@@ -3,6 +3,9 @@ class_name base_unit
 
 var selected : bool = false
 
+var health : float = 100
+var dead : bool = false
+
 const SPEED = 300.0
 @onready var TARGET_POSITION: Vector2 = global_position
 
@@ -58,3 +61,14 @@ func _on_velocity_computed(safe_velocity : Vector2):
 func _draw():
 	if selected:
 		draw_circle(Vector2.ZERO, 45, Color(0,1,1,0.25))
+
+func take_damage(damage : float) -> void:
+	health -= damage
+
+	if health <= 0:
+		
+		dead = true
+		self.hide()
+
+		await get_tree().create_timer(0.2).timeout
+		queue_free()
