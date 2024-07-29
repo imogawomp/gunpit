@@ -28,8 +28,9 @@ func _process(_delta):
 		if body.dead:
 			selected_units.remove_at(selected_units.find(body))
 			continue
-	selection_inputs()
-	move_command_inputs()
+	if !Input.is_action_pressed("shift"):
+		selection_inputs()
+		move_command_inputs()
 
 func _place_units():
 	var friendly_posx_array: Array = []
@@ -166,3 +167,18 @@ func pass_move_points () -> void:
 
 				unit.TARGET_POSITION = targ_pos
 
+
+func _on_unit_type_selection_type_select(group:String):
+	var new_selection : Array = []
+
+	for idx in selected_units.size():
+		var body = selected_units[idx]
+
+		if body.is_in_group(group):
+			body.selected = true
+			new_selection.append(body)
+		else:
+			body.selected = false
+
+	selected_units.resize(0)
+	selected_units.append_array(new_selection)

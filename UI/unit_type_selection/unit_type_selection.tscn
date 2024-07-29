@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=3 uid="uid://g78nfaccpuxs"]
+
+[ext_resource type="Script" path="res://UI/unit_type_selection/unit_type_selection.gd" id="1_uiemk"]
+
+[node name="unit_type_selection" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_uiemk")
+
+[node name="swarm" type="Button" parent="."]
+layout_mode = 0
+offset_right = 92.0
+offset_bottom = 31.0
+text = "Swarm
+"
+
+[node name="riot" type="Button" parent="."]
+layout_mode = 0
+offset_top = 31.0
+offset_right = 92.0
+offset_bottom = 62.0
+text = "Riot
+"
+
+[node name="skirmisher" type="Button" parent="."]
+layout_mode = 0
+offset_top = 62.0
+offset_right = 62.0
+offset_bottom = 93.0
+text = "Skirmisher
+"

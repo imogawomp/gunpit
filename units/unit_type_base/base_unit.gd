@@ -29,8 +29,10 @@ func actor_setup():
 func set_movement_target() -> void:
 	nav_agent.target_position = TARGET_POSITION
 
-func _physics_process(_delta):
+func _process(_delta):
 	queue_redraw()
+
+func _physics_process(_delta):
 	regen_health()
 
 	actor_setup()

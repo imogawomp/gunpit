@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://cib7c3gled5k8"]
+[gd_scene load_steps=9 format=3 uid="uid://cib7c3gled5k8"]
 
 [ext_resource type="PackedScene" uid="uid://cvqad8i4pgeyi" path="res://terrain_objects/test_ground/test_ground.tscn" id="1_0seyl"]
 [ext_resource type="PackedScene" uid="uid://buaau86qm8hfr" path="res://units/unit_handler/unit_handler.tscn" id="2_t3iyp"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c7yyhaywx61ju" path="res://units/unit_type_friendly/friendly_swarm/friendly_swarm.tscn" id="4_jgraj"]
 [ext_resource type="PackedScene" uid="uid://blk2v0aywy8wi" path="res://units/unit_type_enemy/enemy_swarm/enemy_swarm.tscn" id="5_7wwgt"]
 [ext_resource type="PackedScene" uid="uid://gqe10vadrrum" path="res://UI/pause_menu/pause_menu.tscn" id="7_2qdba"]
+[ext_resource type="PackedScene" uid="uid://g78nfaccpuxs" path="res://UI/unit_type_selection/unit_type_selection.tscn" id="8_8d0xb"]
 
 [node name="test_level" type="Node2D"]
 
@@ -55,3 +56,7 @@ position = Vector2(480, 260)
 [node name="ui_elements" type="CanvasLayer" parent="."]
 
 [node name="pause_menu" parent="ui_elements" instance=ExtResource("7_2qdba")]
+
+[node name="unit_type_selection" parent="ui_elements" instance=ExtResource("8_8d0xb")]
+
+[connection signal="type_select" from="ui_elements/unit_type_selection" to="unit_handler" method="_on_unit_type_selection_type_select"]
