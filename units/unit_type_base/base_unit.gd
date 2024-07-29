@@ -39,7 +39,7 @@ func _physics_process(_delta):
 	var next_path_pos : Vector2 = nav_agent.get_next_path_position()
 
 	var n_velocity : Vector2 = current_agent_pos.direction_to(next_path_pos) * SPEED
-
+	
 	if nav_agent.avoidance_enabled:
 		nav_agent.set_velocity(n_velocity)
 	else:
@@ -54,7 +54,7 @@ func _unit_move_toward_point(target_position):
 	else:
 		velocity = velocity.move_toward(Vector2.ZERO, SPEED)
 		
-func _on_velocity_computed(safe_velocity : Vector2):
+func _on_velocity_computed(safe_velocity : Vector2):	
 	velocity = safe_velocity
 	move_and_slide()
 

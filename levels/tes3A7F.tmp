@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://cib7c3gled5k8"]
+
+[ext_resource type="PackedScene" uid="uid://cvqad8i4pgeyi" path="res://terrain_objects/test_ground/test_ground.tscn" id="1_0seyl"]
+[ext_resource type="PackedScene" uid="uid://buaau86qm8hfr" path="res://units/unit_handler/unit_handler.tscn" id="2_t3iyp"]
+[ext_resource type="PackedScene" uid="uid://dw3sieenmbc06" path="res://camera/camera.tscn" id="3_7o0oe"]
+[ext_resource type="PackedScene" uid="uid://j480nofftlkv" path="res://units/unit_type_enemy/riot/unit_riot.tscn" id="3_i1voc"]
+
+[node name="test_level" type="Node2D"]
+
+[node name="test_nav" parent="." instance=ExtResource("1_0seyl")]
+position = Vector2(845, -372)
+scale = Vector2(3, 3)
+
+[node name="unit_handler" parent="." instance=ExtResource("2_t3iyp")]
+
+[node name="enemy" parent="unit_handler" instance=ExtResource("3_i1voc")]
+position = Vector2(0, 0)
+
+[node name="enemy2" parent="unit_handler" instance=ExtResource("3_i1voc")]
+position = Vector2(-522, -446)
+
+[node name="enemy3" parent="unit_handler" instance=ExtResource("3_i1voc")]
+position = Vector2(-1756, -137)
+
+[node name="enemy4" parent="unit_handler" instance=ExtResource("3_i1voc")]
+position = Vector2(-1428, -886)
+
+[node name="enemy5" parent="unit_handler" instance=ExtResource("3_i1voc")]
+position = Vector2(-1143, -341)
+
+[node name="camera" parent="." instance=ExtResource("3_7o0oe")]
