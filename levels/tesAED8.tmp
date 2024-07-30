@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cib7c3gled5k8"]
+[gd_scene load_steps=9 format=3 uid="uid://cib7c3gled5k8"]
 
 [ext_resource type="PackedScene" uid="uid://cvqad8i4pgeyi" path="res://terrain_objects/test_ground/test_ground.tscn" id="1_0seyl"]
 [ext_resource type="PackedScene" uid="uid://buaau86qm8hfr" path="res://units/unit_handler/unit_handler.tscn" id="2_t3iyp"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://j480nofftlkv" path="res://units/unit_type_enemy/enemy_riot/enemy_riot.tscn" id="3_i1voc"]
 [ext_resource type="PackedScene" uid="uid://c7yyhaywx61ju" path="res://units/unit_type_friendly/friendly_swarm/friendly_swarm.tscn" id="4_jgraj"]
 [ext_resource type="PackedScene" uid="uid://blk2v0aywy8wi" path="res://units/unit_type_enemy/enemy_swarm/enemy_swarm.tscn" id="5_7wwgt"]
-[ext_resource type="PackedScene" uid="uid://clc5hug2k5pql" path="res://units/unit_type_friendly/friendly_riot/friendly_riot.tscn" id="6_m5q13"]
 [ext_resource type="PackedScene" uid="uid://gqe10vadrrum" path="res://UI/pause_menu/pause_menu.tscn" id="7_2qdba"]
 [ext_resource type="PackedScene" uid="uid://g78nfaccpuxs" path="res://UI/unit_type_selection/unit_type_selection.tscn" id="8_8d0xb"]
 
@@ -50,8 +49,6 @@ position = Vector2(-1018, -458)
 
 [node name="enemy_swarm3" parent="unit_handler" instance=ExtResource("5_7wwgt")]
 position = Vector2(-886, -776)
-
-[node name="UnitRiot" parent="unit_handler" instance=ExtResource("6_m5q13")]
 
 [node name="camera" parent="." instance=ExtResource("3_7o0oe")]
 position = Vector2(480, 260)

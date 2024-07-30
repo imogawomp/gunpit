@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://cugd7nfrod5nv"]
+[gd_scene load_steps=4 format=3 uid="uid://cugd7nfrod5nv"]
 
+[ext_resource type="Script" path="res://units/unit_type_enemy/enemy_riot/enemy_riot_turret/enemy_riot_turret.gd" id="1_365hm"]
 [ext_resource type="Texture2D" uid="uid://bey3ihe31nq8l" path="res://Art/prototypes/iconComponentClear.png" id="1_mq6vs"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_om7o4"]
 radius = 401.0
 
 [node name="UnitRiot" type="Area2D"]
+script = ExtResource("1_365hm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_om7o4")
@@ -13,3 +15,6 @@ shape = SubResource("CircleShape2D_om7o4")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_mq6vs")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

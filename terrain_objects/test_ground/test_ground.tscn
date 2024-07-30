@@ -13,3 +13,38 @@ navigation_polygon = SubResource("NavigationPolygon_10uw6")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_su7us")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 16
+collision_mask = 16
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(227, -169, 59, -15, 132, 207, -113, 338, -113, 400, 1199, 401, 1200, -400, -103, -397, -103, -280, 40, -275, 162, -347, 335, -382, 508, -261, 705, -369, 880, -362, 1140, -29, 1067, 304, 705, 352, 541, 249, 406, 326, 241, 285, 348, -77)
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+collision_layer = 16
+collision_mask = 16
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D2"]
+polygon = PackedVector2Array(-114, 336, -326, 276, -484, 133, -727, 148, -881, 296, -1039, 264, -1112, 0, -1015, -150, -1051, -371, -623, -360, -465, -291, -102, -280, -102, -280, -102, -399, -1200, -397, -1199, 399, -114, 398)
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+collision_layer = 16
+collision_mask = 16
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D3"]
+polygon = PackedVector2Array(523, 50, 799, 184, 732, -124, 634, -129, 657, 9, 613, -77)
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="."]
+collision_layer = 16
+collision_mask = 16
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D4"]
+polygon = PackedVector2Array(793, -125, 868, 163, 922, 4)
+
+[node name="StaticBody2D5" type="StaticBody2D" parent="."]
+collision_layer = 16
+collision_mask = 16
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D5"]
+polygon = PackedVector2Array(-250, -67, -284, 17, -234, 109, -190, 117, -99, -78, -135, -161, -135, -161)

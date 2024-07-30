@@ -5,7 +5,7 @@ var selected_units : Array = []
 var select_start : Vector2
 var select_end : Vector2
 
-const friendly_unit_riot = preload("res://units/unit_type_friendly/riot/unit_riot.tscn")
+const friendly_unit_riot = preload("res://units/unit_type_friendly/friendly_riot/friendly_riot.tscn")
 
 @onready var select_area : Area2D = $select_area
 @onready var select_shape : CollisionShape2D = $select_area/select_shape
@@ -21,38 +21,39 @@ func _ready():
 	select_area.monitorable = false
 	select_area.monitoring = false
 	_place_units()
+	process_mode = Node.PROCESS_MODE_PAUSABLE
 
 func _process(_delta):
 	for body in selected_units:	
 		if body.dead:
 			selected_units.remove_at(selected_units.find(body))
 			continue
-	selection_inputs()
-	move_command_inputs()
+	if !Input.is_action_pressed("shift"):
+		selection_inputs()
+		move_command_inputs()
 
 func _place_units():
+	var friendly_posx_array: Array = []
+	var friendly_posy_array: Array = []
 	
-	var friendly_posx_array: Array;
-	var friendly_posy_array: Array;
-	
-	for i in range(0, 3):
-		var tempx = global_position.x + randf_range(0, 500)
-		var tempy = global_position.y + randf_range(0, 500)
-		
-		if friendly_posx_array && friendly_posy_array:
-			for x in friendly_posx_array.size():
-				while (tempx >= friendly_posx_array[x] + 100 && tempx < friendly_posx_array[x] + 100):
-					tempx = global_position.x + randf_range(0, 250);
-				while (tempy >= friendly_posy_array[x] + 100 && tempy < friendly_posy_array[x] + 100):
-					tempy = global_position.y + randf_range(0, 250);
-				
-		var f_unit_riot = friendly_unit_riot.instantiate()
-		f_unit_riot.global_position = Vector2(tempx, tempy)
-		
-		friendly_posx_array.push_back(tempx)
-		friendly_posy_array.push_back(tempy)
-		
-		self.add_child(f_unit_riot)
+	#for i in range(0, 3):
+		#var tempx = global_position.x + randf_range(0, 500)
+		#var tempy = global_position.y + randf_range(0, 500)
+		#
+		#if friendly_posx_array && friendly_posy_array:
+			#for x in friendly_posx_array.size():
+				#while (tempx >= friendly_posx_array[x] + 100 && tempx < friendly_posx_array[x] + 100):
+					#tempx = global_position.x + randf_range(0, 250);
+				#while (tempy >= friendly_posy_array[x] + 100 && tempy < friendly_posy_array[x] + 100):
+					#tempy = global_position.y + randf_range(0, 250);
+				#
+		#var f_unit_riot = friendly_unit_riot.instantiate()
+		#f_unit_riot.global_position = Vector2(tempx, tempy)
+		#
+		#friendly_posx_array.push_back(tempx)
+		#friendly_posy_array.push_back(tempy)
+		#
+		#self.add_child(f_unit_riot)
 
 func selection_inputs () -> void:
 	if Input.is_action_just_pressed("lmb"):
@@ -166,3 +167,18 @@ func pass_move_points () -> void:
 
 				unit.TARGET_POSITION = targ_pos
 
+
+func _on_unit_type_selection_type_select(group:String):
+	var new_selection : Array = []
+
+	for idx in selected_units.size():
+		var body = selected_units[idx]
+
+		if body.is_in_group(group):
+			body.selected = true
+			new_selection.append(body)
+		else:
+			body.selected = false
+
+	selected_units.resize(0)
+	selected_units.append_array(new_selection)

@@ -13,6 +13,7 @@ var distance : float = 0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta):
+	rotation = randf_range(0, 2 * PI)
 	velocity = DIRECTION * SPEED
 	distance += velocity.length() * delta
 	#velocity = velocity.rotated(randf_range(-0.5, 0.5))

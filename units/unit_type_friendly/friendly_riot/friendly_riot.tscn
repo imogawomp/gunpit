@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=3 uid="uid://clc5hug2k5pql"]
+
+[ext_resource type="Script" path="res://units/unit_type_friendly/friendly_riot/friendly_riot.gd" id="1_xptnd"]
+[ext_resource type="Texture2D" uid="uid://burv5ys5ie6k2" path="res://Art/skirmisher/sk_angry_movin1.png" id="3_6xqwv"]
+[ext_resource type="PackedScene" uid="uid://cbtrbl0vwm86h" path="res://units/unit_type_friendly/friendly_riot/friendly_riot_turret/friendly_riot_turret.tscn" id="3_hsmwc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_isiup"]
+size = Vector2(60, 61)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g6dsv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_6xqwv")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="UnitRiot" type="CharacterBody2D" groups=["friendly", "riot"]]
+collision_layer = 25
+collision_mask = 17
+script = ExtResource("1_xptnd")
+
+[node name="nav_agent" type="NavigationAgent2D" parent="."]
+avoidance_enabled = true
+radius = 35.0
+time_horizon_obstacles = 0.79
+max_speed = 100000.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_isiup")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_g6dsv")
+offset = Vector2(36, 0)
+
+[node name="UnitRiotTurret" parent="." instance=ExtResource("3_hsmwc")]
+
+[connection signal="velocity_computed" from="nav_agent" to="." method="_on_nav_agent_velocity_computed"]
